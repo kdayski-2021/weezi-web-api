@@ -24,10 +24,10 @@ async function loadData() {
             daos.push(daoName.value)
         }
     }
-    const currentUsers = sheet.getCell(resultRowIndex, 3).value
-    const aum = sheet.getCell(resultRowIndex, 4).value
-    const totalTransactionVolume = sheet.getCell(resultRowIndex, 5).value
-    const votesCastByCommunity = sheet.getCell(resultRowIndex, 9).value
+    const currentUsers = parseFloat(String(sheet.getCell(resultRowIndex, 3).value).replace(/ /g,"").replace(/,/g,"."))
+    const aum = parseFloat(String(sheet.getCell(resultRowIndex, 4).value).replace(/ /g,"").replace(/,/g,"."))
+    const totalTransactionVolume = parseFloat(String(sheet.getCell(resultRowIndex, 5).value).replace(/ /g,"").replace(/,/g,"."))
+    const votesCastByCommunity = parseFloat(String(sheet.getCell(resultRowIndex, 9).value).replace(/ /g,"").replace(/,/g,"."))
 
     const daoInfo = {
         DAOVaults: daos.length,
@@ -36,6 +36,7 @@ async function loadData() {
         totalTransactionVolume: Math.round(totalTransactionVolume / 100000) / 10,
         votesCastByCommunity
     }
+
     return daoInfo
 }
 
